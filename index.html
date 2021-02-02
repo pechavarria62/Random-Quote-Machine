@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <title>Random Quote Machine</title>
+        
+        <script>
+            const QUOTEBANK = [
+                {
+                    quote: '"We cannot become what we want by remaining what we are."',
+                    author: "Max Depree"
+                },
+                {
+                    quote: '"I\'m selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can\'t handle me at my worst, then you sure as hell don\'t deserve me at my best."',
+                    author: "Marilyn Monroe"
+                },
+                {
+                    quote: '"Be yourself; everyone else is already taken."',
+                    author: " Oscar Wilde"
+                },
+                {
+                    quote: '"Two things are infinite: the universe and human stupidity; and I\'m not sure about the universe."',
+                    author: "Albert Einstein"
+                },
+                {
+                    quote: '"Be who you are and say what you feel, because those who mind don\'t matter, and those who matter don\'t mind."',
+                    author: "Bernard M. Baruch"
+                } 
+            ];
+            
+            window.onload = init;
+            function init() { 
+                generateQuote()
+            }
+            
+            function generateQuote() {
+                let quoteSize = QUOTEBANK.length;
+                let randomIndex = Math.floor(Math.random() * quoteSize);
+                let randomQuote = QUOTEBANK[randomIndex];
+                
+                
+                let tweeterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=";
+                
+                //Add the quote
+                let quoteInQuote = randomQuote.quote.replace(/ /g, "%20");
+                tweeterLink += quoteInQuote
+                
+                //Auithor
+                let authorInQuote = randomQuote.author.replace(/ /g, "%20");
+                tweeterLink += "-" + authorInQuote 
+                
+                
+                document.getElementById("tweet-quote").href = tweeterLink;
+                document.getElementById("text").innerText = randomQuote.quote;
+                document.getElementById("author").innerText = randomQuote.author;
+            }    
+                
+        </script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-8 offset-md-2">
+                    <wrapper id="quote-box">
+                        <div class="card"> 
+                            <div class="card-header">
+                                Random Quote Machine
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <div id="text"></div>
+                                </h5>
+                                <p class="card-text">
+                                    <div id="author"></div>
+                                </p>
+                                <button id="new-quote" onclick="generateQuote();" class="btn btn-success">New Quote</button>
+                                <a href="#" id="tweet-quote"  target="_blank" class="btn btn-primary" >
+                                    Tweet Quote
+                                    
+                                </a>
+                            </div>
+                        </div>  
+                    </wrapper>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</html>
